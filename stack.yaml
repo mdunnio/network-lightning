@@ -1,0 +1,11 @@
+resolver: lts-12.5
+
+packages:
+- .
+
+extra-deps:
+  - haskoin-core-0.8.4
+  - murmur3-1.0.3
+  - secp256k1-haskell-0.1.4
+
+system-ghc: false
