@@ -6,7 +6,9 @@ module Network.Lightning.API.Invoice
     ( -- * Types
       Expiry (..)
     , Invoice
+    , MilliSatoshis
     , Label
+    , Description
 
     , invoice
     ) where
