@@ -3,11 +3,13 @@
 {-# LANGUAGE TemplateHaskell            #-}
 
 module Network.Lightning.API.ListInvoices
-    ( listInvoices
+    ( Invoices
+    , listInvoices
     ) where
 
 import           Control.Monad.IO.Class        (MonadIO)
-import           Data.Aeson                    (FromJSON (..), withObject, (.:))
+import           Data.Aeson                    (FromJSON (..), ToJSON,
+                                                withObject, (.:))
 import           Data.Aeson.TH                 (defaultOptions, deriveJSON)
 import           Data.Maybe                    (fromMaybe)
 
@@ -24,7 +26,7 @@ deriveJSON defaultOptions ''ListInvoicesParams
 
 
 newtype Invoices = Invoices [Invoice]
-    deriving (Eq, Show)
+    deriving (Eq, Show, ToJSON)
 
 
 instance FromJSON Invoices where
