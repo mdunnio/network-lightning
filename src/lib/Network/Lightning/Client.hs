@@ -1,5 +1,5 @@
 module Network.Lightning.Client
-    ( runClient
+    ( runTCPClient
     ) where
 
 import           Control.Exception         (bracket)
@@ -12,8 +12,8 @@ import           Network.Socket            (HostName, ServiceName,
 import           Network.Lightning.JsonRpc (JsonRpcT, runJsonRpcT)
 
 
-runClient :: HostName -> ServiceName -> JsonRpcT IO a -> IO a
-runClient host port f = do
+runTCPClient :: HostName -> ServiceName -> JsonRpcT IO a -> IO a
+runTCPClient host port f = do
     addr <- resolve host port
     bracket (open addr) close talk
   where
