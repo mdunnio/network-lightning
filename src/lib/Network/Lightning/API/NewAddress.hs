@@ -9,7 +9,8 @@ module Network.Lightning.API.NewAddress
 
 import           Control.Monad.IO.Class    (MonadIO)
 import           Data.Aeson                (FromJSON (..), ToJSON (..),
-                                            Value (..), withObject, (.:))
+                                            Value (..), object, withObject,
+                                            (.:), (.=))
 import qualified Data.Vector               as V
 import qualified Network.Haskoin.Address   as A
 import           Network.Haskoin.Constants (btcTest)
@@ -20,6 +21,10 @@ import           Network.Lightning.JsonRpc (Error, JsonRpcT (..), Method (..),
 
 newtype NewAddress = Address A.Address
     deriving (Show, Eq)
+
+
+instance ToJSON NewAddress where
+    toJSON (Address addr) = object [ "address" .= show addr ]
 
 
 data NewAddressType = Bech32 | P2SH
