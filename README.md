@@ -20,11 +20,11 @@ import           Network.Lightning.API.ListInvoices (listInvoices)
 import           Network.Lightning.API.NewAddress   (NewAddressType (..),
                                                      newAddr)
 import           Network.Lightning.API.NodeInfo     (getInfo)
-import           Network.Lightning.Client           (runClient)
+import           Network.Lightning.Client           (runTCPClient)
 
 
 main :: IO ()
-main = runClient host port $ do
+main = runTCPClient host port $ do
     getInfo >>= liftIO . print
     newAddr Bech32 >>= liftIO . print
     invoice 50000 "test" "testing" Nothing >>= liftIO . print
